@@ -21,9 +21,6 @@ using namespace std;
 #include <limits.h>
 #include <float.h>
 
-
-#include "diagonal2.h"
-
 namespace masc {
 namespace polygon {
 
@@ -77,7 +74,6 @@ struct ply_vertex_extra
 
     float   concavity;
     uint    flag;
-    vector<c_diagonal> diagonals;
 
     ply_vertex * other_v; //copied vertex in original/simplified polygon
 

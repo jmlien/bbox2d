@@ -6,7 +6,6 @@
 
 #include "polygon.h"
 #include "intersection.h"
-#include "bpc.h"
 #include <vector>
 
 
@@ -30,21 +29,6 @@ ply_vertex * ply_vertex_extra::getDihedralNext()
     //assert(isPM());
     return other_v->getNext()->getExtra().other_v;
 }
-
-
-//
-//ply_vertex * ply_vertex_extra::getDihedralPre(){
-//    assert(concavity_bpc);
-//    ply_vertex * v=concavity_bpc->getConcavity();
-//    for(short i=0;i<4;i++) v=v->getPre();
-//    return v;
-//}
-//ply_vertex * ply_vertex_extra::getDihedralNext(){
-//    assert(concavity_bpc);
-//    ply_vertex * v=concavity_bpc->getConcavity();
-//    for(short i=0;i<4;i++) v=v->getNext();
-//    return v;
-//}
 
 
 ply_vertex::~ply_vertex()
@@ -287,7 +271,6 @@ const Point2d& c_ply::getCenter()
 
     return center;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////
 void c_ply::negate()

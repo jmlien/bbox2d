@@ -1,6 +1,10 @@
 #pragma once
 
-#include <Point.h>
+#include "Point.h"
+#include "polygon.h"
+#include <ostream>
+
+#define DEBUG 0 //
 
 namespace masc {
 namespace polygon {
@@ -8,7 +12,7 @@ namespace polygon {
   //oritented bounding box (obb)
   struct obb
   {
-      obb(){ width=heigh=0; }
+      obb(){ width=height=FLT_MAX; }
       mathtool::Point2d corners[4];
       float width, height;
   };
@@ -17,10 +21,10 @@ namespace polygon {
   {
     public:
       //return true if the problem is solved by the given box
-      bool solved(const obb& box)=0;
+      virtual bool solved(const obb& box)=0;
       const obb & getSolution() const { return m_solution; }
 
-    private:
+    protected:
       obb m_solution;
   };
 
@@ -44,7 +48,10 @@ namespace polygon {
       obb createOBB(int e[4],const mathtool::Vector2d& v, const mathtool::Vector2d& n);
 
       //data
-      vector<mathtool::Poin2d> m_chull; //convex hull of the input poly
+#if DEBUG
+      c_ply m_chull_ply;
+#endif
+      vector<mathtool::Point2d> m_chull; //convex hull of the input poly
   };
 
   //we now define problems of finding various boudning boxes
@@ -78,6 +85,12 @@ namespace polygon {
     private:
       float m_width, m_height;
   };
+
+  //stream out the box
+  std::ostream & operator<<(std::ostream& out, const obb& box);
+
+  //save to svg file
+  void saveSVG(string svg_filename, c_ply& ply, const obb& box);
 
 }//end namespace polygon
 }//end namespace masc

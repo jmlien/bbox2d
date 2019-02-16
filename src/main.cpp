@@ -3,18 +3,11 @@
 #include <fstream>
 using namespace std;
 
-void createPoly(const string& filename, cd_polygon& poly); //see below
-ostream & operator<<(ostream& out, const masc::polygon::obb& box)
-{
-  out<<"[w="<<box.m_width<<", h="<<box.m_height<<"], ("
-     <<box.corners[0]<<") ,("<<box.corners[1]<<"), ("
-     <<box.corners[2]<<") ,("<<box.corners[3]<<")";
-  return out;
-}
+void createPoly(const string& filename, masc::polygon::c_polygon& poly); //see below
 
 int main(int argc, char ** argv)
 {
-  if(arcg!=2)
+  if(argc!=2)
   {
     cerr<<"Usage: "<<argv[0]<<" polygon"<<endl;
     return 1;
@@ -22,32 +15,40 @@ int main(int argc, char ** argv)
 
   //create polygon
   masc::polygon::c_polygon poly;
-
+  createPoly(argv[1],poly);
 
   //create bbox of the polygon
   masc::polygon::bbox2d bbox(poly);
 
   //create min-area bbox
-  masc::polygon::obb min_area_bbox = bbox.build(min_area_bbox());
+  masc::polygon::min_area_bbox p1;
+  masc::polygon::obb min_area_bbox = bbox.build(p1);
   cout<<"BBox with min area: "<<min_area_bbox<<endl;
+  saveSVG("min_area_bbox.svg",poly.front(),min_area_bbox);
 
   //build min-perimeter box
-  masc::polygon::obb min_peri_bbox = bbox.build(min_perimeter_bbox());
+  masc::polygon::min_perimeter_bbox p2;
+  masc::polygon::obb min_peri_bbox = bbox.build(p2);
   cout<<"BBox with min perimeter: "<<min_peri_bbox<<endl;
+  saveSVG("min_perimeter_bbox.svg",poly.front(),min_peri_bbox);
 
   //build a box that fits into 13X13 square
-  contained_bbox problem(13,13);
-  masc::polygon::obb bbox_13X13 = bbox.build(problem);
-  if(problem.solved(bbox_13X13)==false)
-    cerr<<"! Error: Cannot find a bounding box that fits into 13X13 square"<<endl;
+  float W=28, H=28;
+  masc::polygon::contained_bbox p3(W,H);
+  masc::polygon::obb bbox_WXH = bbox.build(p3);
+  if(p3.solved(bbox_WXH)==false)
+    cerr<<"! Error: Cannot find a bounding box that fits into "<<W<<"X"<<H<<" square"<<endl;
   else
-    cout<<"BBox contained in 13X13 square: "<<bbox_13X13<<endl;
+  {
+    cout<<"BBox contained in "<<W<<"X"<<H<<" square: "<<bbox_WXH<<endl;
+    saveSVG("contained_bbox.svg",poly.front(),bbox_WXH);
+  }
 
   return 0;
 }
 
 
-void createPoly(const string& filename, cd_polygon& poly)
+void createPoly(const string& filename, masc::polygon::c_polygon& poly)
 {
     //read polygon from poly files
     if(filename.find(".poly") != string::npos ){
