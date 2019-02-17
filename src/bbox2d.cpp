@@ -8,7 +8,7 @@ namespace polygon {
 //initialize with a given polygon
 bbox2d::bbox2d(const c_polygon & poly)
 #if DEBUG
-: m_chull_ply(c_ply::POUT)
+: m_chull_ply(c_ply::POUT), m_ply(poly)
 #endif
 {
   const c_ply& ply=poly.front();
@@ -29,7 +29,7 @@ bbox2d::bbox2d(const c_polygon & poly)
 
 #if DEBUG
   m_chull_ply.endPoly();
-#endif  
+#endif
 }
 
 obb bbox2d::build(bbox2d_problem & problem)
@@ -70,6 +70,7 @@ obb bbox2d::build(bbox2d_problem & problem)
     cout<<"box="<<box<<endl;
     sprintf(svg_filename, "%s%03d.svg", "DEBUG_",i);
     saveSVG(svg_filename,m_chull_ply,box);
+    //saveSVG(svg_filename,m_ply.front(),box);
 #endif
 
     //check if this box solve the problem

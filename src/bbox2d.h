@@ -4,7 +4,7 @@
 #include "polygon.h"
 #include <ostream>
 
-#define DEBUG 0 //
+#define DEBUG 0 //to enable debugging output, change to 1 
 
 namespace masc {
 namespace polygon {
@@ -50,6 +50,7 @@ namespace polygon {
       //data
 #if DEBUG
       c_ply m_chull_ply;
+      c_polygon m_ply;
 #endif
       vector<mathtool::Point2d> m_chull; //convex hull of the input poly
   };

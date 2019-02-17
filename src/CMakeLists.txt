@@ -1,7 +1,7 @@
 #####################################################
 #                COMMON Libraries                   #
 #####################################################
-set(libbbox2d_deps
+set(bbox2dlib_deps
   mathtool
   polygon)
 
@@ -10,15 +10,15 @@ add_subdirectory(mathtool)
 add_subdirectory(polygon)
 
 #############################################
-# libbbox2d
+# bbox2dlib
 #############################################
 
-set(LIBBBOX2D_SRC
-    ${LIBBBOX2D_SRC}
+set(bbox2dlib_SRC
+    ${bbox2dlib_SRC}
     bbox2d.cpp)
 
-add_library(libbbox2d STATIC ${LIBBBOX2D_SRC})
-target_link_libraries(libbbox2d ${libbbox2d_deps})
+add_library(bbox2dlib STATIC ${bbox2dlib_SRC})
+target_link_libraries(bbox2dlib ${bbox2dlib_deps})
 
 #################################################################
 # BBOX EXE
@@ -38,8 +38,8 @@ set(BBOX2D_SRC
 )
 
 add_executable(${APP_NAME} ${BBOX2D_SRC})
-add_dependencies(${APP_NAME} libbbox2d)
+add_dependencies(${APP_NAME} bbox2dlib)
 
 target_link_libraries(${APP_NAME}
-                    ${libbbox2d_deps}
-                    libbbox2d)
+                    ${bbox2dlib_deps}
+                    bbox2dlib)
