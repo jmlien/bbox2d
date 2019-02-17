@@ -1,10 +1,9 @@
+<img src="./examples/tw.gif">
 # bbox2d
 C++ code that solves several 2D bounding box problems using rotating calibers algorithm
   - bounding box with minimal area
   - bounding box with minimal perimeter
   - bounding box that fits into a given rectangle
-
-<img width=200 src="./examples/tw.gif">
 
 ## Examples
   - **build**
@@ -21,7 +20,8 @@ C++ code that solves several 2D bounding box problems using rotating calibers al
   `> bbox2d ../examples/dragon.poly`
 
   - **output**:
-notice the slight difference near the foot of the dragon.
+  
+_notice the slight difference near the foot of the dragon._
 
 | Left: Minimum area bounding box        | Right: Minimum perimeter bounding box           | 
 | ------------- |:-------------:|
