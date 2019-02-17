@@ -3,7 +3,7 @@ C++ code that solves several 2D bounding box problems using the **rotating calip
   - bounding box with minimal area
   - bounding box with shortest perimeter
   - bounding box that fits into a given rectangle
-
+Runs in _O(n)_ for a polygon with _n_ vertices
 <img width="200" src="./examples/tw.gif">
 
 ## Examples
