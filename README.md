@@ -1,5 +1,8 @@
 # bbox2d
 Solving several 2D bounding box problems using rotating calibers algorithm
+  - bounding box with minimal area
+  - bounding box with minimal perimeter
+  - bounding box that fits into a given rectangle
 
 ## Examples
   - **build**
