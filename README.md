@@ -1,7 +1,7 @@
 # bbox2d
 C++ code that solves several 2D bounding box problems using the **rotating calibers algorithm**
   - bounding box with minimal area
-  - bounding box with minimal perimeter
+  - bounding box with shortest perimeter
   - bounding box that fits into a given rectangle
 
 <img width="200" src="./examples/tw.gif">
