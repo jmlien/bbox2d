@@ -6,10 +6,14 @@ C++ code that solves several 2D bounding box problems using rotating calibers al
 
 ## Examples
   - **build**
-  > mkdir build; cd build; cmake ..;make
+  > mkdir build
+  > cd build
+  > cmake ..
+  > make
+  This creates bbox2d in _build_ folder
   
   - **command**: 
-  > bbox2d examples/dragon.poly
+  > bbox2d ../examples/dragon.poly
 
   - **output**:
 
