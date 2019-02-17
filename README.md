@@ -6,11 +6,17 @@ C++ code that solves several 2D bounding box problems using rotating calibers al
 
 ## Examples
   - **build**
+  
   > mkdir build
+  
   > cd build
+  
   > cmake ..
+  
   > make
-  This creates bbox2d in _build_ folder
+  
+  
+  This creates bbox2d in _build_ folder and libbbox2dlib.a in _build/src_ folder
   
   - **command**: 
   > bbox2d ../examples/dragon.poly
