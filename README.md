@@ -1,10 +1,11 @@
 # bbox2d
-C++ code that solves several 2D bounding box problems using rotating calibers algorithm
+C++ code that solves several 2D bounding box problems using the **rotating calipers algorithm**
   - bounding box with minimal area
-  - bounding box with minimal perimeter
+  - bounding box with shortest perimeter
   - bounding box that fits into a given rectangle
 
-<img width=200 src="./examples/tw.gif">
+Runs in _O(n)_ for a polygon with _n_ vertices
+<img width="200" src="./examples/tw.gif">
 
 ## Examples
   - **build**
@@ -21,7 +22,8 @@ C++ code that solves several 2D bounding box problems using rotating calibers al
   `> bbox2d ../examples/dragon.poly`
 
   - **output**:
-notice the slight difference near the foot of the dragon.
+  
+_notice the slight difference near the foot of the dragon._
 
 | Left: Minimum area bounding box        | Right: Minimum perimeter bounding box           | 
 | ------------- |:-------------:|
